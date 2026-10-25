@@ -1,0 +1,30 @@
+﻿@model Cinema_System.Models.Actor
+@{ ViewData["Title"] = "Add Actor"; }
+
+<div class="container py-4" style="max-width: 600px;">
+    <div class="card bg-dark text-white p-4 border-0 shadow">
+        <h3 class="mb-3">Add New Actor</h3>
+        <form asp-action="Create" method="post">
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Actor Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Enter actor name" />
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="Bio" class="form-label">Biography</label>
+                <textarea asp-for="Bio" class="form-control" rows="3" placeholder="Enter bio"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Img" class="form-label">Image URL</label>
+                <input asp-for="Img" class="form-control" placeholder="Enter image link" />
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                <button type="submit" class="btn btn-danger px-4">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

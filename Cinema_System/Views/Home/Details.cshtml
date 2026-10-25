@@ -1,0 +1,49 @@
+﻿@model Cinema_System.Models.Movie
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="container my-5">
+    <div class="row">
+        
+        <div class="col-md-4">
+            <img src="@(!string.IsNullOrEmpty(Model.MainImg) ? Model.MainImg : "/images/default.jpg")" class="img-fluid rounded shadow" alt="@Model.Name">
+        </div>
+
+       
+        <div class="col-md-8">
+            <h1 class="fw-bold">@Model.Name</h1>
+            <p class="text-muted">@Model.Description</p>
+
+            <ul class="list-group list-group-flush mb-4">
+                <li class="list-group-item"><strong>Category:</strong> @Model.Category?.Name</li>
+                <li class="list-group-item"><strong>Cinema:</strong> @Model.Cinema?.Name</li>
+                <li class="list-group-item"><strong>Price:</strong> <span class="text-success fw-bold">@Model.Price.ToString("C")</span></li>
+                <li class="list-group-item"><strong>Date & Time:</strong> @Model.DateTime.ToString("yyyy-MM-dd HH:mm")</li>
+            </ul>
+
+           
+            <h4 class="mb-3">Actors</h4>
+            <div class="d-flex flex-wrap gap-3">
+                @if (Model.movieActors != null && Model.movieActors.Any())
+                {
+                    @foreach (var movieActor in Model.movieActors)
+                    {
+                        <div class="card p-2 text-center" style="width: 100px;">
+                            <span class="fw-bold small">@movieActor.Actor?.Name</span>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">No actors assigned to this movie yet.</p>
+                }
+            </div>
+
+            <div class="mt-4">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
